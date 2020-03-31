@@ -20,15 +20,23 @@ server.get('/', async(req, res) => {
   }
 });
 
-server.post('/', (req, res) => {
-  Shoutouts.add(req.body)
-  .then(shoutout => {
-    res.status(201).json(shoutout);
-  })
-  .catch (error => {
-    console.error('\nERROR', error);
-    res.status(500).json({ error: 'Cannot add the shoutout' });
-  });
+server.post('/', async(req, res) => {
+  // Shoutouts.add(req.body)
+  // .then(shoutout => {
+  //   res.status(201).json(shoutout);
+  // })
+  // .catch (error => {
+  //   console.error('\nERROR', error);
+  //   res.status(500).json({ error: 'Cannot add the shoutout' });
+  // });
+  try {
+    const shoutouts = await db('shoutouts').add(req.body)
+    res.status(200).json({ motd: messageOfTheDay, shoutouts })
+  }
+  catch(err) {
+    console.error('\nERROR', err)
+    res.status(400).json({ error: 'Cannot add shout' })
+  }
 });
 
 module.exports = server;
