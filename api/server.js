@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const Shoutouts = require('../data/shoutouts-model.js');
+const db = require('../data/db')
 
 const server = express();
 
