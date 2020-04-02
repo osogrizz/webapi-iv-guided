@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const Shoutouts = require('../data/shoutouts-model')
+// const Shoutouts = require('../data/shoutouts-model')
 
 const db = require('../data/db')
 
@@ -37,5 +37,3 @@ server.post('/', async(req, res) => {
 });
 
 module.exports = server;
-
-
